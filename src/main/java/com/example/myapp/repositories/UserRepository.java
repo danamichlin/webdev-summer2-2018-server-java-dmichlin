@@ -1,8 +1,9 @@
-package com.example.webdevsummer22018serverjavajannunzi.repositories;
+package com.example.myapp.repositories;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.webdevsummer22018serverjavajannunzi.models.User;
+import com.example.myapp.models.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
