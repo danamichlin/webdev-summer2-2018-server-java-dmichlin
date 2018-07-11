@@ -47,6 +47,19 @@ public class UserService {
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable ("userId") int id) {
 		userRepository.deleteById(id);
-		
+	}
+	
+	// registration 
+	@PostMapping("/register")
+	public User register(@RequestBody User user) {
+		return userRepository.save(user);
+	}
+	
+	//login
+	@PostMapping("/login")
+	public User login(@RequestBody User user) {
+		String username = user.getUsername();
+		String password = user.getPassword();
+		return userRepository.findUserByCredentials(username, password);
 	}
 }
