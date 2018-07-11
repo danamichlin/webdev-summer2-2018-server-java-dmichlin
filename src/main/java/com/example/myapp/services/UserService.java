@@ -79,12 +79,16 @@ public class UserService {
 		return newUser;
 	}
 	
-	//registration service
-	@PostMapping("/register")
-	public User register(@RequestBody User user, HttpSession session) {
-		User cu = userRepository.save(user);
-		session.setAttribute("currentUser", cu);
-		
-		return cu;
+	//profile
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User user, HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		return this.updateUser(currentUser.getId(), user);
+	}
+	
+	//TODO
+	@PostMapping("/api/logout")
+	public User logout(HttpSession session) {
+		return null;
 	}
 }
