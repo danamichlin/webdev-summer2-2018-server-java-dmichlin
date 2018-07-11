@@ -19,27 +19,35 @@ public class UserService {
 		return (List<User>) userRepository.findAll();
 	}
 	
-	// TODO
 	@PostMapping("/api/user")
-	public User createUser() {
-		return null;
+	public User createUser(@RequestBody User user) {
+		User u = userRepository.save(user);
+		return u;
 	}
 	
 	// TODO
 	@GetMapping("/api/user/{userId}")
-	public User findUserByID(Integer id) {
-		return null; 
+	public Optional<User> findUserByID(@PathVariable ("userId") Integer id) {
+		return userRepository.findById(id); 
 	}
 	
 	//TODO 
 	@PutMapping("/api/user/{userId}")
-	public void updateUser(Integer userId) {
+	public void updateUser(@PathVariable ("userId") Integer id, 
+			@RequestBody User user) {
+//		Optional<User> optionalUser = userRepository.findById(id);
+//		if (optionalUser.isPresent()) {
+//			User actualUser = optionalUser.get();
+//			actualUser.set
+		}
 		
-	}
+		
+		
+	
 	
 	//TODO 
 	@DeleteMapping("/api/user/{userId}")
-	public void deleteUser(Integer userId) {
+	public void deleteUser(@PathVariable ("userId") Integer userId) {
 		
 	}
 }

@@ -9,7 +9,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	private String username; 
 	private String password;
 	private String email;
@@ -17,7 +17,7 @@ public class User {
 	private String lastName;
 	private String role; 
 	private String phone;
-	private Date dateOfBirth;
+//	private Date dateOfBirth;
 	
 	// getters + setters
 	public void setId(int id) {
@@ -76,15 +76,15 @@ public class User {
 		return this.phone;
 	}
 	
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth; 
-	}
-	public Date getDateOfBirth() {
-		return this.dateOfBirth;
-	}
+//	public void setDateOfBirth(Date dateOfBirth) {
+//		this.dateOfBirth = dateOfBirth; 
+//	}
+//	public Date getDateOfBirth() {
+//		return this.dateOfBirth;
+//	}
 
 	// constructor
-	User(String username, String password, String email, String firstName, 
+	public User(String username, String password, String email, String firstName, 
 			String lastName, String role, String phone, Date dateOfBirth) {
 		this.username = username;
 		this.password = password;
@@ -93,7 +93,7 @@ public class User {
 		this.lastName = lastName;
 		this.role = role;
 		this.phone = phone; 
-		this.dateOfBirth = dateOfBirth;
+//		this.dateOfBirth = dateOfBirth;
 	}
 
 }

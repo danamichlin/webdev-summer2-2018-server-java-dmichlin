@@ -7,16 +7,23 @@
     var roleFld = $("#roleFld");
     var phoneFld = $("#phoneFld");
     var dateOfBirthFld = $("#dateOfBirthFld");
-    var $removeBtn, $editBtn, $createBtn;
-    var $firstNameFld, $lastNameFld;
+    var $removeBtn, $editBtn;
+    var createBtn = $('#createBtn');
     var $userRowTemplate, $tbody;
-    var userService = new AdminUserServiceClient();
+    // var userService = new AdminUserServiceClient();
     $(main);
 
-    $createBtn.click(createUser());
+    createBtn.click(createUser);
+    // $removeBtn.click(deleteUser);
+    // $editBtn.click(updateUser);
+
+
     function main() {
         //TODO
+        // findAllUsers()
+        //     .then(renderUser);
     }
+    main();
 
     function createUser() {
         var usernameStr = usernameFld.val();
@@ -40,35 +47,44 @@
         };
 
         var userObjStr = JSON.stringify(userObj);
-
-        fetch('/create', {
-            method: 'post',
+        alert("Successfully created User");
+        fetch('/api/user', {
+            method: 'Post',
             body: userObjStr,
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+
     }
 
     function findAllUsers() {
+        return fetch('/getAllUsers')
+        .then(function(response) {
+            return response.json();
+        })
     }
 
     function findUserById() {
     }
+
     function deleteUser() {
 
     }
+
     function selectUser() {
 
     }
+
     function updateUser() {
 
     }
-    function renderUser(user) {
 
+    function renderUser(users) {
+        console.log(users);
     }
+
     function renderUsers(users) {
 
     }
-
 })();
