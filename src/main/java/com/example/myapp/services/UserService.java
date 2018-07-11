@@ -8,6 +8,7 @@ import com.example.myapp.repositories.UserRepository;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -50,7 +51,32 @@ public class UserService {
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable ("userId") int id) {
 		userRepository.deleteById(id);
-		
+	}
+	
+	// registration 
+	@PostMapping("/register")
+	public User register(@RequestBody User user, HttpSession session) {
+		User currentUser = userRepository.save(user);
+		session.setAttribute("currentUser", currentUser);
+		return currentUser;
+	}
+	
+	//checkLogin
+	@GetMapping("/checkLogin")
+	public User checkLogin(HttpSession session) {
+		return (User) session.getAttribute("currentUser");
+	}
+	
+	//login
+	@PostMapping("/login")
+	public User login(@RequestBody User user, HttpServletResponse response) {
+		String username = user.getUsername();
+		String password = user.getPassword();
+		User newUser = userRepository.findUserByCredentials(username, password);
+		if (newUser == null) {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
+		return newUser;
 	}
 	
 	//registration service
