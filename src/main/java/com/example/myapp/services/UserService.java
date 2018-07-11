@@ -55,7 +55,13 @@ public class UserService {
 	
 	// registration 
 	@PostMapping("/register")
-	public User register(@RequestBody User user, HttpSession session) {
+	public User register(@RequestBody User user, HttpSession session, HttpServletResponse response) {
+		String username = user.getUsername();
+		User existingUser = userRepository.findUserByUsername(username);
+		if (existingUser != null) {
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			return null;
+		}
 		User currentUser = userRepository.save(user);
 		session.setAttribute("currentUser", currentUser);
 		return currentUser;
