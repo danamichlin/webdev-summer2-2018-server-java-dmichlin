@@ -8,12 +8,15 @@ import com.example.myapp.repositories.UserRepository;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class UserService {
 	
 	@Autowired
 	UserRepository userRepository;
 	
+	//User admin services
 	@GetMapping("/api/user")	
 	public List<User> findAllUsers() {
 		
@@ -48,5 +51,14 @@ public class UserService {
 	public void deleteUser(@PathVariable ("userId") int id) {
 		userRepository.deleteById(id);
 		
+	}
+	
+	//registration service
+	@PostMapping("/register")
+	public User register(@RequestBody User user, HttpSession session) {
+		User cu = userRepository.save(user);
+		session.setAttribute("currentUser", cu);
+		
+		return cu;
 	}
 }
