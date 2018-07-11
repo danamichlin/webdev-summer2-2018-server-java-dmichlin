@@ -15,6 +15,17 @@
 <body>
     <table border="1">
         <thead>
+            <tr>
+                <td>Username</td>
+                <td>Password</td>
+                <td>Email</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Role</td>
+                <td>Phone Number</td>
+                <td>Date of Birth</td>
+                <td>Actions</td>
+            </tr>
             <tr class="wbdv-form">
                 <td>
                     <input id="usernameFld"
@@ -43,32 +54,20 @@
                     <input id="phoneFld" class="form-control" placeholder="123-456-7890">
                 </td>
                 <td>
-                    <input id="dateOfBirthFld" class="form-control" placeholder="MM/DD/YYYY">
+                    <input id="dateOfBirthFld" class="form-control" placeholder="YYYY-MM-DD">
                 </td>
                 <td>
                     <span class="float-right" style="white-space: nowrap">
                         <button id="createBtn">Create User</button>
+                        <button id="updateBtn">Update User</button>
                     </span>
                 </td>
             </tr>
-            <tbody class="wbdv-tbody">
-                <tr class="wbdv-template wbdv-user wbdv-hidden">
-                    <td class="wbdv-username">ada</td>
-                    <td>&nbsp;</td>
-                    <td class="wbdv-first-name">Ada</td>
-                    <td class="wbdv-last-name">Lovelace</td>
-                    <td class="wbdv-role">FACULTY</td>
-                    <td class="wbdv-actions">
-                        <span class="float-right">
-                          <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
-                          <i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
+        </thead>
 
+        <tbody class="wbdv-tbody"></tbody>
     </table>
-    <!--<script src="../services/user.service.client.js"></script>-->
+    <script src="../services/user.service.client.js"></script>
 
     <script src="user-admin.controller.client.js"></script>
 
