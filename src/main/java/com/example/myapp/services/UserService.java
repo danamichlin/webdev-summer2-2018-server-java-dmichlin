@@ -17,6 +17,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
+	//User admin services
 	@GetMapping("/api/user")	
 	public List<User> findAllUsers() {
 		
@@ -76,5 +77,14 @@ public class UserService {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 		return newUser;
+	}
+	
+	//registration service
+	@PostMapping("/register")
+	public User register(@RequestBody User user, HttpSession session) {
+		User cu = userRepository.save(user);
+		session.setAttribute("currentUser", cu);
+		
+		return cu;
 	}
 }
