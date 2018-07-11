@@ -5,14 +5,12 @@ function LoginServiceClient () {
 
     function login (userObjectStr) {
         return fetch('/login', {
-            method: 'post',
+            method: 'Post',
             body: userObjectStr,
             credentials: 'include',
             headers: {
                 'content-type': 'application/json'
             }
         });
-
-
     }
 }

@@ -22,8 +22,8 @@
         };
 
         var userObjectStr = JSON.stringify(user);
-        loginServiceClient.login(userObjectStr).
-            then(navigateToProfile);
+        loginServiceClient.login(userObjectStr)
+            .then(navigateToProfile);
     }
 
     function navigateToProfile() {
