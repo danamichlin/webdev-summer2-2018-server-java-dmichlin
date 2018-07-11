@@ -23,10 +23,14 @@
 
         var userObjectStr = JSON.stringify(user);
         loginServiceClient.login(userObjectStr)
-            .then(navigateToProfile);
+            .then(function (response) {
+                if (response != null) {
+                    navigateToProfile();
+                }
+            });
     }
 
     function navigateToProfile() {
-        window.location.href = '/components/profile/profile.template.client.html';
+        window.location.href = '../profile/profile.template.client.html';
     }
 })();

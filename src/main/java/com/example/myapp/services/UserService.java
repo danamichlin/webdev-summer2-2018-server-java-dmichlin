@@ -8,6 +8,9 @@ import com.example.myapp.repositories.UserRepository;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class UserService {
 	
@@ -51,15 +54,27 @@ public class UserService {
 	
 	// registration 
 	@PostMapping("/register")
-	public User register(@RequestBody User user) {
-		return userRepository.save(user);
+	public User register(@RequestBody User user, HttpSession session) {
+		User currentUser = userRepository.save(user);
+		session.setAttribute("currentUser", currentUser);
+		return currentUser;
+	}
+	
+	//checkLogin
+	@GetMapping("/checkLogin")
+	public User checkLogin(HttpSession session) {
+		return (User) session.getAttribute("currentUser");
 	}
 	
 	//login
 	@PostMapping("/login")
-	public User login(@RequestBody User user) {
+	public User login(@RequestBody User user, HttpServletResponse response) {
 		String username = user.getUsername();
 		String password = user.getPassword();
-		return userRepository.findUserByCredentials(username, password);
+		User newUser = userRepository.findUserByCredentials(username, password);
+		if (newUser == null) {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
+		return newUser;
 	}
 }
