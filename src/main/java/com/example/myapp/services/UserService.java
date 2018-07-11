@@ -69,26 +69,42 @@ public class UserService {
 	
 	//login
 	@PostMapping("/login")
-	public User login(@RequestBody User user, HttpServletResponse response) {
+	public User login(@RequestBody User user, HttpServletResponse response, HttpSession session) {
 		String username = user.getUsername();
 		String password = user.getPassword();
 		User newUser = userRepository.findUserByCredentials(username, password);
 		if (newUser == null) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			return newUser;
 		}
+		session.setAttribute("currentUser", newUser);
 		return newUser;
 	}
 	
 	//profile
 	@PutMapping("/api/profile")
-	public User updateProfile(@RequestBody User user, HttpSession session) {
+	public User updateProfile(@RequestBody User newUser, HttpSession session) {
+		
 		User currentUser = (User) session.getAttribute("currentUser");
-		return this.updateUser(currentUser.getId(), user);
+
+		int id = currentUser.getId();
+		Optional<User> optionalUser = userRepository.findById(id);
+		if (optionalUser.isPresent()) {
+			newUser.setId(id);
+			return userRepository.save(newUser);
+		}
+		return null;	
 	}
 	
-	//TODO
+	@GetMapping("/api/profile")
+	public User getUserProfile(HttpSession session) {
+		User cu = (User) session.getAttribute("currentUser");
+		return cu;
+	}
+
+	
 	@PostMapping("/api/logout")
-	public User logout(HttpSession session) {
-		return null;
+	public void logout(HttpSession session) {
+		session.invalidate();
 	}
 }

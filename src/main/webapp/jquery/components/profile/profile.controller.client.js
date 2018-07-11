@@ -1,7 +1,8 @@
 (function () {
 
     var $username, $firstName, $lastName,
-        $updateBtn;
+        $updateBtn, $logoutBtn;
+
     var currentUser = null;
 
     function init() {
@@ -10,11 +11,11 @@
         $firstName = $("#firstName");
         $lastName = $("#lastName");
         $updateBtn = $("#updateBtn");
+        $logoutBtn = $("#logoutBtn")
 
         $updateBtn.click(updateUser);
+        $logoutBtn.click(logout);
 
-        // findUserById(7)
-        //   .then(renderUser)
         profile()
             .then(renderUser);
     }
@@ -26,14 +27,24 @@
             lastName: $lastName.val()
         };
 
-        fetch("/api/user/" + currentUser.id, {
-                                                 method: 'put',
-                                                 body: JSON.stringify(user),
-                                                 'credentials': 'include',
-                                                 headers: {
-                                                     'content-type': 'application/json'
-                                                 }
-                                             });
+        fetch("/api/profile", {
+            method: 'put',
+            body: JSON.stringify(user),
+            'credentials': 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
+
+    function logout() {
+        fetch("/api/logout", {
+            method: "post",
+            'credentials': 'include',
+            headers: {
+                'content-type': 'application/json'
+        }
+        }).then(navigateToLogin);
     }
 
     function renderUser(user) {
@@ -44,7 +55,7 @@
     }
 
     function profile() {
-        return fetch('/profile', {
+        return fetch('/api/profile', {
             'credentials': 'include'
         })
             .then(function (response) {
@@ -57,6 +68,10 @@
             .then(function (response) {
                 return response.json();
             });
+    }
+
+    function navigateToLogin() {
+        window.location.href = '../login/login.template.client.html';
     }
 
     function handleResponse() {
