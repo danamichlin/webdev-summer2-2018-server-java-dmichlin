@@ -43,7 +43,7 @@
             headers: {
                 'content-type': 'application/json'
             }
-        });
+        }).then(updateSucceeded());
     }
 
     function updateSucceeded() {

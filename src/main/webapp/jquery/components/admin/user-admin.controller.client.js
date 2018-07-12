@@ -18,9 +18,9 @@
 
 
     function main() {
-        //TODO
+
         userServiceClient.findAllUsers()
-            .then(renderUsers);
+            .then(renderUsers).then(clearUserObject);
     }
     main();
 
@@ -52,6 +52,10 @@
         document.getElementById(field).disabled = true;
     }
 
+    function enablleInputField(field) {
+        document.getElementById(field).disabled = false;
+    }
+
     function putUserInForm(user) {
         $updateBtn.attr('id', user.id);
         $usernameFld.val(user.username);
@@ -70,6 +74,7 @@
     function clearUserObject() {
         $updateBtn.attr('id', "");
         $usernameFld.val("");
+        enablleInputField("usernameFld");
         $passwordFld.val("");
         $emailFld.val("");
         $firstNameFld.val("");
