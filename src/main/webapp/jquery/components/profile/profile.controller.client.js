@@ -32,27 +32,33 @@
 
     function updateUser() {
         var user = {
-            password: $password.val(),
-            email: $email.val(),
             firstName: $firstName.val(),
-            lastName: $lastName.val(),
-            role: $role.val(),
-            phone: $phoneNumber.val(),
-            dateOfBirth: $dateOfBirth.val()
-
+            lastName: $lastName.val()
         };
 
-        userServiceClient.updateUserProfile(user)
-            .then(updateSucceeded());
+        fetch("/api/profile", {
+            method: 'put',
+            body: JSON.stringify(user),
+            'credentials': 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
     }
 
     function updateSucceeded() {
         alert('Update Successful');
     }
 
+
     function logout() {
-        userServiceClient.logout()
-            .then(navigateToLogin);
+        fetch("/api/logout", {
+            method: "post",
+            'credentials': 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(navigateToLogin);
     }
 
     function renderUser(user) {
@@ -68,11 +74,14 @@
     }
 
     function profile() {
-        userServiceClient.profile()
+        return fetch('/api/profile', {
+            'credentials': 'include'
+        })
             .then(function (response) {
                 return response.json();
             });
     }
+
 
     function findUserById(userId) {
         return fetch('/api/user/' + userId)

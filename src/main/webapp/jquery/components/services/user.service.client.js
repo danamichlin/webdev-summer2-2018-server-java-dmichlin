@@ -8,8 +8,6 @@ function UserServiceClient () {
     this.login = login;
     this.registerHandler = registerHandler;
     this.updateUserProfile = updateUserProfile;
-    this.logout = logout;
-    this.profile = profile;
 
     function deleteUser(id) {
         var url = "/api/user/" + id;
@@ -74,7 +72,7 @@ function UserServiceClient () {
         });
     }
 
-    function registerHandler () {
+    function registerHandler (userObjStr) {
         fetch('/register', {
             method: 'post',
             body: userObjStr,
@@ -82,7 +80,23 @@ function UserServiceClient () {
                 'Content-Type': 'application/json'
             },
             'credentials': 'include'
-        });
+        }).then(function (response) {
+            if (response.status === 409) {
+                registrationFailed();
+            }
+            else
+            {
+                registrationSuccessful();
+            }
+        });;
+    }
+
+    function registrationSuccessful() {
+        window.location.href = '../profile/profile.template.client.html';
+    }
+
+    function registrationFailed() {
+        alert('Username cannot be registered')
     }
 
     function updateUserProfile(user) {
@@ -96,19 +110,6 @@ function UserServiceClient () {
         })
     }
 
-    function logout() {
-        fetch("/api/logout", {
-            method: "post",
-            'credentials': 'include',
-            headers: {
-                'content-type': 'application/json'
-            }
-        });
-    }
 
-    function profile() {
-        return fetch('/api/profile', {
-            'credentials': 'include'
-        });
-    }
+
 }
