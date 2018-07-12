@@ -24,7 +24,7 @@
 
         var userObjStr = JSON.stringify(userObj);
 
-        userServiceClient.registerHandler()
+        userServiceClient.registerHandler(userObjStr)
             .then(function (response) {
             if (response.status === 409) {
                 registrationFailed();
@@ -36,11 +36,5 @@
         });
     }
 
-    function registrationSuccessful() {
-        window.location.href = '../profile/profile.template.client.html';
-    }
 
-    function registrationFailed() {
-        alert('Username cannot be registered')
-    }
 })();
