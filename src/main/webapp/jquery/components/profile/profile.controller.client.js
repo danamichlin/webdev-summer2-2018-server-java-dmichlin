@@ -32,8 +32,14 @@
 
     function updateUser() {
         var user = {
+            username: $username.val(),
+            password: $password.val(),
+            email: $email.val(),
             firstName: $firstName.val(),
-            lastName: $lastName.val()
+            lastName: $lastName.val(),
+            role: $role.val(),
+            phone: $phoneNumber.val(),
+            dateOfBirth: $dateOfBirth.val()
         };
 
         fetch("/api/profile", {

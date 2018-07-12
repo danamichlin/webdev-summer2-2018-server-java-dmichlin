@@ -6,7 +6,7 @@
     var $lastNameFld = $("#lastNameFld");
     var $roleFld = $("#roleFld");
     var $phoneFld = $("#phoneFld");
-    var $dateOfBirthFld = $("#dateOfBirthFld");
+    //var $dateOfBirthFld = $("#dateOfBirthFld");
     var $createBtn = $('#createBtn');
     var $updateBtn = $('#updateBtn');
     var $userRowTemplate, $tbody;
@@ -66,7 +66,7 @@
         $lastNameFld.val(user.lastName);
         $roleFld.val(user.role);
         $phoneFld.val(user.phone);
-        $dateOfBirthFld.val(user.dateOfBirth);
+        //$dateOfBirthFld.val(user.dateOfBirth);
 
     }
 
@@ -81,7 +81,7 @@
         $lastNameFld.val("");
         $roleFld.val("");
         $phoneFld.val("");
-        $dateOfBirthFld.val("");
+        //$dateOfBirthFld.val("");
     }
 
     function createUser() {
@@ -118,9 +118,6 @@
             });
     }
 
-    function selectUser() {
-
-    }
 
 
     function updateUser(event) {
@@ -169,9 +166,9 @@
         td.append(user.phone);
         tr.append(td);
 
-        td = $('<td>');
-        td.append(user.dateOfBirth);
-        tr.append(td);
+        // td = $('<td>');
+        // td.append(user.dateOfBirth);
+        // tr.append(td);
 
         td = $('<td>');
         var deleteBtn = $('<button>DELETE</button>');
