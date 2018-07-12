@@ -29,15 +29,22 @@
                 'Content-Type': 'application/json'
             },
             'credentials': 'include'
-        }).then(registrationSuccessful, registrationFailed)
-
+        }).then(function (response) {
+            if (response.status === 409) {
+                registrationFailed();
+            }
+            else
+            {
+                registrationSuccessful();
+            }
+        });
     }
 
     function registrationSuccessful() {
-        window.location.href = '/components/profile/profile.template.client.html';
+        window.location.href = '../profile/profile.template.client.html';
     }
 
     function registrationFailed() {
-        alert('Username or Password not found')
+        alert('Username cannot be registered')
     }
 })();

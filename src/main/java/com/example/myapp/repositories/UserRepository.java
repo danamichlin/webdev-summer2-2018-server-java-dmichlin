@@ -14,6 +14,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	public User findUserByCredentials(@Param("username") String u, @Param("password") String p);
 	
 	@Query("SELECT user FROM User user WHERE user.username=:username")
-	public User findUserBYUsername(@Param("username") String username);
+	public User findUserByUsername(@Param("username") String username);
 
 }

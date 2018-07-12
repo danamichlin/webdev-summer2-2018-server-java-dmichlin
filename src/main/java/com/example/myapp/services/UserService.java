@@ -55,7 +55,13 @@ public class UserService {
 	
 	// registration 
 	@PostMapping("/register")
-	public User register(@RequestBody User user, HttpSession session) {
+	public User register(@RequestBody User user, HttpSession session, HttpServletResponse response) {
+		String username = user.getUsername();
+		User existingUser = userRepository.findUserByUsername(username);
+		if (existingUser != null) {
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			return null;
+		}
 		User currentUser = userRepository.save(user);
 		session.setAttribute("currentUser", currentUser);
 		return currentUser;
@@ -69,22 +75,42 @@ public class UserService {
 	
 	//login
 	@PostMapping("/login")
-	public User login(@RequestBody User user, HttpServletResponse response) {
+	public User login(@RequestBody User user, HttpServletResponse response, HttpSession session) {
 		String username = user.getUsername();
 		String password = user.getPassword();
 		User newUser = userRepository.findUserByCredentials(username, password);
 		if (newUser == null) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			return newUser;
 		}
+		session.setAttribute("currentUser", newUser);
 		return newUser;
 	}
 	
-	//registration service
-	@PostMapping("/register")
-	public User register(@RequestBody User user, HttpSession session) {
-		User cu = userRepository.save(user);
-		session.setAttribute("currentUser", cu);
+	//profile
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User newUser, HttpSession session) {
 		
+		User currentUser = (User) session.getAttribute("currentUser");
+
+		int id = currentUser.getId();
+		Optional<User> optionalUser = userRepository.findById(id);
+		if (optionalUser.isPresent()) {
+			newUser.setId(id);
+			return userRepository.save(newUser);
+		}
+		return null;	
+	}
+	
+	@GetMapping("/api/profile")
+	public User getUserProfile(HttpSession session) {
+		User cu = (User) session.getAttribute("currentUser");
 		return cu;
+	}
+
+	
+	@PostMapping("/api/logout")
+	public void logout(HttpSession session) {
+		session.invalidate();
 	}
 }
