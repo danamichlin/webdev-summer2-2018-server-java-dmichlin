@@ -3,43 +3,71 @@
     <head>
         <meta charset="UTF-8">
         <title>Registration Page</title>
-        <h1>Registration</h1>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+              rel="stylesheet">
+        <link href="../../../styles.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Register</h1>
-
-        <div>
-            <label for="username">
-                Username
-            </label>
-            <input type="text"
-                   placeholder="alice"
-                   id="username"/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <h1 class="col-sm-8 text-center">Register</h1>
+            <div class="col-sm-2 text-right"></div>
         </div>
 
         <div>
-            <label for="password">
-                Password
-            </label>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <label for="username" >
+                    Username
+                </label>
+                <input type="text"
+                       placeholder="username"
+                       class="form-control"
+                       id="username"/>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    <div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <label for="password">Password</label>
             <input type="password"
-                   placeholder="1234qwerasdf"
+                   placeholder="password"
+                   class="form-control"
                    id="password"/>
         </div>
+        <div class="col-sm-2"></div>
+        </div>
 
-        <div>
+    <div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
             <label for="password2">
                 Validate Password
             </label>
             <input type="password"
-                   placeholder="1234qwerasdf"
+                   placeholder="password"
+                   class="form-control"
                    id="password2"/>
         </div>
-        <button id="registerBtn">
+        <div class="col-sm-2"></div>
+    </div>
+
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 center-block">
+        <button id="registerBtn" type="button" class="btn btn-primary btn-sm form-control">
             Register
         </button>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 text-left center-block">
         <a href="../login/login.template.client.html">
             Login
         </a>
+    </div>
+    <div class="col-sm-2"></div>
 
         <script
                 src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -47,6 +75,7 @@
                 crossorigin="anonymous"></script>
 
         <script src="register.controller.client.js"></script>
+    </div>
 
     </body>
 </html>

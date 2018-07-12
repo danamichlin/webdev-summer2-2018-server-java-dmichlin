@@ -2,7 +2,7 @@
     var $username,
         $password,
         $loginBtn;
-        var loginServiceClient = new LoginServiceClient();
+        var userServiceClient = new UserServiceClient();
 
     function init() {
         $username = $('#username');
@@ -22,7 +22,8 @@
         };
 
         var userObjectStr = JSON.stringify(user);
-        loginServiceClient.login(userObjectStr)
+
+        userServiceClient.login(userObjectStr)
             .then(function (response) {
                 if (response != null) {
                     navigateToProfile();
