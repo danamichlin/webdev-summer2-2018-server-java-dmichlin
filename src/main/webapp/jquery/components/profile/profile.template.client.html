@@ -1,20 +1,67 @@
-<h1>Profile</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="../../../styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>User Profile</h1>
+        <div class="col-sm-4">
+            <label placeholder="username" for="username">Username</label>
+            <input id="username" readonly="readonly" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="password">Password</label>
+            <input id="password" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="email">Email</label>
+            <input id="email" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="firstName">First Name</label>
+            <input id="firstName" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="role">Role</label>
+            <select id="role" type="text" class="form-control">
+                <option value="Student">Student</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Admin">Admin</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input id="dateOfBirth" class="form-control">
+        </div>
 
-<input placeholder="username" id="username">
-<br/>
-<input id="firstName"/>
-<br/>
-<input id="lastName"/>
-<br/>
-<button id="updateBtn">
-    Update
-</button>
-<button id="logoutBtn">
-    Logout
-</button>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+        <div class="btn-group col-sm-4">
+            <button id="updateBtn" class="btn btn-success form-control">
+                Update
+            </button>
+            <button id="logoutBtn" class="btn btn-danger form-control">
+                Logout
+            </button>
+        </div>
 
-<script src="profile.controller.client.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script src="profile.controller.client.js"></script>
+    </div>
+</body>
+</html>

@@ -8,6 +8,8 @@
     var passwordFld = $('#password');
     var password2Fld = $('#password2');
 
+    var userServiceClient = new UserServiceClient();
+
     registerBtn.click(registerHandler);
 
     function registerHandler() {
@@ -22,14 +24,8 @@
 
         var userObjStr = JSON.stringify(userObj);
 
-        fetch('/register', {
-            method: 'post',
-            body: userObjStr,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            'credentials': 'include'
-        }).then(function (response) {
+        userServiceClient.registerHandler()
+            .then(function (response) {
             if (response.status === 409) {
                 registrationFailed();
             }

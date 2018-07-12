@@ -13,64 +13,80 @@
 </head>
 
 <body>
-    <table border="1">
-        <thead>
-            <tr>
-                <td>Username</td>
-                <td>Password</td>
-                <td>Email</td>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Role</td>
-                <td>Phone Number</td>
-                <td>Date of Birth</td>
-                <td>Actions</td>
-            </tr>
-            <tr class="wbdv-form">
-                <td>
-                    <input id="usernameFld"
-                           class="form-control"
-                           placeholder="Username" /></td>
-                <td>
-                    <input id="passwordFld" class="form-control" placeholder="Password" />
-                </td>
-                <td>
-                    <input id="emailFld" class="form-control" placeholder="email@example.com"/>
-                </td>
-                <td>
-                    <input id="firstNameFld" class="form-control"
-                           placeholder="First Name" /></td>
-                <td>
-                    <input id="lastNameFld" class="form-control"
-                           placeholder="Last Name" /></td>
-                <td>
-                    <select id="roleFld" class="form-control">
-                        <option value="FACULTY">Faculty</option>
-                        <option value="STUDENT">Student</option>
-                        <option value="ADMIN">Admin</option>
-                    </select>
-                </td>
-                <td>
-                    <input id="phoneFld" class="form-control" placeholder="123-456-7890">
-                </td>
-                <td>
-                    <input id="dateOfBirthFld" class="form-control" placeholder="YYYY-MM-DD">
-                </td>
-                <td>
-                    <span class="float-right" style="white-space: nowrap">
-                        <button id="createBtn">Create User</button>
-                        <button id="updateBtn">Update User</button>
-                    </span>
-                </td>
-            </tr>
-        </thead>
-
-        <tbody class="wbdv-tbody"></tbody>
-    </table>
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <h1 class="col-sm-8 text-center"><i class="glyphicon glyphicon-th-list"></i>&nbsp;&nbsp;
+                User Admin View</h1>
+            <div class="col-sm-2 text-right">
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>Username</td>
+                            <td>Password</td>
+                            <td>Email</td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Role</td>
+                            <td>Phone Number</td>
+                            <td>Date of Birth</td>
+                            <td>Actions</td>
+                        </tr>
+                        <tr class="wbdv-form">
+                            <td>
+                                <input id="usernameFld"
+                                       class="form-control"
+                                       placeholder="Username" /></td>
+                            <td>
+                                <input id="passwordFld" class="form-control" placeholder="Password" />
+                            </td>
+                            <td>
+                                <input id="emailFld" class="form-control" placeholder="email@example.com"/>
+                            </td>
+                            <td>
+                                <input id="firstNameFld" class="form-control"
+                                       placeholder="First Name" /></td>
+                            <td>
+                                <input id="lastNameFld" class="form-control"
+                                       placeholder="Last Name" /></td>
+                            <td>
+                                <select id="roleFld" class="form-control">
+                                    <option value="FACULTY">Faculty</option>
+                                    <option value="STUDENT">Student</option>
+                                    <option value="ADMIN">Admin</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input id="phoneFld" class="form-control" placeholder="123-456-7890">
+                            </td>
+                            <td>
+                                <input id="dateOfBirthFld" class="form-control" placeholder="YYYY-MM-DD">
+                            </td>
+                            <td>
+                                <span class="float-right" style="white-space: nowrap">
+                                    <button id="createBtn">Create User</button>
+                                    <button id="updateBtn">Update User</button>
+                                </span>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="wbdv-tbody"></tbody>
+                 </table>
+            </div>
+        </div>
+    </div>
+</div>
     <script src="../services/user.service.client.js"></script>
 
     <script src="user-admin.controller.client.js"></script>
-
+</div>
 </body>
 
 </html>

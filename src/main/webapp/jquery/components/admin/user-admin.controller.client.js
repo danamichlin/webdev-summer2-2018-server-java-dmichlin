@@ -48,9 +48,14 @@
         return userObj;
     }
 
+    function disableInputField(field) {
+        document.getElementById(field).disabled = true;
+    }
+
     function putUserInForm(user) {
         $updateBtn.attr('id', user.id);
         $usernameFld.val(user.username);
+        disableInputField("usernameFld");
         $passwordFld.val(user.password);
         $emailFld.val(user.email);
         $firstNameFld.val(user.firstName);
