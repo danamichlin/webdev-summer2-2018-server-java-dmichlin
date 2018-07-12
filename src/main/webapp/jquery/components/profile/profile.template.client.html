@@ -1,20 +1,59 @@
-<h1>Profile</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>User Profile</h1>
+        <div>
+            <label placeholder="username" for="username">Username</label>
+            <input id="username" readonly="readonly">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input id="password" readonly="readonly">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email">
+        </div>
+        <div>
+            <label for="firstName">First Name</label>
+            <input id="firstName">
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input id="lastName">
+        </div>
+        <div>
+            <label for="role">Role</label>
+            <input id="role">
+        </div>
+        <div>
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber">
+        </div>
+        <div>
+            <label for="dateOfBirth">Date of Birth</label>
+            <input id="dateOfBirth">
+        </div>
 
-<input placeholder="username" id="username">
-<br/>
-<input id="firstName"/>
-<br/>
-<input id="lastName"/>
-<br/>
-<button id="updateBtn">
-    Update
-</button>
-<button id="logoutBtn">
-    Logout
-</button>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    </div>
 
-<script src="profile.controller.client.js"></script>
+    <button id="updateBtn">
+        Update
+    </button>
+    <button id="logoutBtn">
+        Logout
+    </button>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script src="profile.controller.client.js"></script>
+</body>
+</html>

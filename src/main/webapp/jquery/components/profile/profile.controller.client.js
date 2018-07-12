@@ -1,6 +1,8 @@
 (function () {
 
-    var $username, $firstName, $lastName,
+    var $username, $password, $email,
+        $firstName, $lastName, $role,
+        $phoneNumber, $dateOfBirth,
         $updateBtn, $logoutBtn;
 
     var currentUser = null;
@@ -8,8 +10,14 @@
     function init() {
 
         $username = $("#username");
+        $password = $("#password");
+        $email = $("#email");
         $firstName = $("#firstName");
         $lastName = $("#lastName");
+        $role = $("#role");
+        $phoneNumber = $("#phoneNumber");
+        $dateOfBirth = $("#dateOfBirth");
+
         $updateBtn = $("#updateBtn");
         $logoutBtn = $("#logoutBtn")
 
@@ -23,8 +31,14 @@
 
     function updateUser() {
         var user = {
+            password: $password.val(),
+            email: $email.val(),
             firstName: $firstName.val(),
-            lastName: $lastName.val()
+            lastName: $lastName.val(),
+            role: role.val(),
+            phoneNumber: $phoneNumber.val(),
+            dateOfBirth: $dateOfBirth.val()
+
         };
 
         fetch("/api/profile", {
@@ -50,8 +64,13 @@
     function renderUser(user) {
         currentUser = user;
         $username.val(user.username);
+        $password.val(user.password);
+        $email.val(user.email);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
+        $role.val(user.role);
+        $phoneNumber.val(user.phoneNumber);
+        $dateOfBirth.val(user.dateOfBirth);
     }
 
     function profile() {
@@ -74,7 +93,4 @@
         window.location.href = '../login/login.template.client.html';
     }
 
-    function handleResponse() {
-
-    }
 })();
