@@ -14,10 +14,10 @@ public class Course {
   private Date created;
   @Temporal(TemporalType.TIMESTAMP)
   private Date modified;
-  //@OneToMany(mappedBy="course")
-  //private List<Module> modules;
+  @OneToMany(mappedBy="course")
+  private List<Module> modules;
   
-  //getters + setters:
+  //setters + getters:
   public void setId(int id) {
 	  this.id = id;
   }
@@ -48,6 +48,14 @@ public class Course {
   
   public Date getModified() {
 	  return this.modified;
+  }
+  
+  public void setModules(List<Module> modules) {
+	  this.modules = modules;
+  }
+  
+  public List<Module> getModules() {
+	  return this.modules;
   }
 
 }

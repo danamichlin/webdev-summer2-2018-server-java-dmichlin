@@ -2,12 +2,12 @@ package com.example.myapp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.myapp.models.Course;
-import com.example.myapp.models.User;
-import com.example.myapp.repositories.CourseRepository;
 import java.util.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.example.myapp.repositories.CourseRepository;
+import com.example.myapp.models.Course;
 
 @RestController
 public class CourseService {
