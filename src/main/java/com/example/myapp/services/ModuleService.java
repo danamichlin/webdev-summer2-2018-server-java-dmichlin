@@ -34,7 +34,7 @@ public class ModuleService {
 	}
 	
 	@GetMapping("/api/module/{moduleId}")
-	public Optional<Module> findCourseById(@PathVariable ("moduleId") int id) {
+	public Optional<Module> findModuleById(@PathVariable ("moduleId") int id) {
 		return moduleRepository.findById(id); 
 	}
 	

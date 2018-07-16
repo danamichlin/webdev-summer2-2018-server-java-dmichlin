@@ -57,5 +57,12 @@ public class Course {
   public List<Module> getModules() {
 	  return this.modules;
   }
+  
+  public Course(String title, Date created, Date modified, List<Module> modules) {
+	  this.title = title;
+	  this.created = created;
+	  this.modified = modified;
+	  this.modules = modules;
+  }
 
 }
