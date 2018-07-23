@@ -8,18 +8,29 @@ import javax.servlet.http.HttpSession;
 
 import com.example.myapp.repositories.ModuleRepository;
 import com.example.myapp.models.Module;
-import com.example.myapp.services.CourseService;
+import com.example.myapp.repositories.CourseRepository;
 import com.example.myapp.models.Course;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ModuleService {
 	
 	@Autowired
 	ModuleRepository moduleRepository;
+	@Autowired
+	CourseRepository courseRepository;
 	
 	@PostMapping("/api/course/{courseId}/module")
-	public Module createModule(@RequestBody Module module) {
-		return moduleRepository.save(module);
+	public Module createModule(@PathVariable ("courseId") int id, @RequestBody Module module) {
+		Optional<Course> optCourse = courseRepository.findById(id);
+		if (optCourse.isPresent()) {
+			Course actCourse = optCourse.get();
+			module.setCourse(actCourse);
+			return moduleRepository.save(module);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	@DeleteMapping("/api/module/{moduleId}")
@@ -40,8 +51,7 @@ public class ModuleService {
 	
 	@GetMapping("/api/course/{courseId}/module")
 	public List<Module> findAllModulesForCourse(@PathVariable("courseId") int id) {
-		CourseService courseService = new CourseService();
-		Optional<Course> optionalCourse = courseService.findCourseById(id);
+		Optional<Course> optionalCourse = courseRepository.findById(id);
 		if (optionalCourse.isPresent()) {
 			Course actualCourse = optionalCourse.get();
 			return actualCourse.getModules();
@@ -57,10 +67,10 @@ public class ModuleService {
 	public Module updateModule(
 			@PathVariable ("moduleId") int id, 
 			@RequestBody Module newModule) {
-		Optional<Module> optionalModule = moduleRepository.findById(id);
-		if (optionalModule.isPresent()) {
-			newModule.setId(id);
-			return moduleRepository.save(newModule);
+		Module optionalModule = moduleRepository.findById(id).get();
+		if (optionalModule!=null) {
+			optionalModule.setTitle(newModule.getTitle());
+			return moduleRepository.save(optionalModule);
 		}
 		return null;
 	}

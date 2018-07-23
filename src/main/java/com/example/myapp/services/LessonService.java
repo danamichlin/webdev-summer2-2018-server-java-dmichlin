@@ -7,24 +7,35 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.example.myapp.repositories.LessonRepository;
+import com.example.myapp.models.Course;
 import com.example.myapp.models.Lesson;
 import com.example.myapp.repositories.ModuleRepository;
 import com.example.myapp.models.Module;
-import com.example.myapp.services.CourseService;
-import com.example.myapp.models.Course;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class LessonService {
 	
 	@Autowired
 	LessonRepository lessonRepository;
+	@Autowired 
+	ModuleRepository moduleRepository;
 	
 	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson")
-	public Lesson createLesson(@RequestBody Lesson lesson) {
-		return lessonRepository.save(lesson);
+	public Lesson createLesson(@PathVariable ("courseId") int cId, 
+			@PathVariable("moduleId") int mId, @RequestBody Lesson lesson) {
+			Optional<Module> optModule = moduleRepository.findById(mId);
+			if (optModule.isPresent()) {
+				Module actModule = optModule.get();
+				lesson.setModule(actModule);
+				return lessonRepository.save(lesson);
+			}
+			else {
+				return null;
+			}
 	}
 	
-	@DeleteMapping("/api/module/{moduleId}")
+	@DeleteMapping("/api/lesson/{lessonId}")
 	public void deleteLesson(@PathVariable ("lessonId") int id) {
 		lessonRepository.deleteById(id);
 	}
@@ -36,16 +47,13 @@ public class LessonService {
 	}
 	
 	@GetMapping("/api/lesson/{lessonId}")
-	public Optional<Lesson> findCourseById(@PathVariable ("lessonId") int id) {
+	public Optional<Lesson> findLessonById(@PathVariable ("lessonId") int id) {
 		return lessonRepository.findById(id); 
 	}
 	
-	//TODO 
-	// why 
 	@GetMapping("/api/module/{moduleId}/lesson")
-	public List<Lesson> findAllLessonsForModule(@PathVariable("moduleId") int id) {
-		ModuleService moduleService = new ModuleService();
-		Optional<Module> optionalModule = moduleService.findModuleById(id);
+	public List<Lesson> findAllLessonsForModule(@PathVariable("moduleId") int id) {	
+		Optional<Module> optionalModule = moduleRepository.findById(id);
 		if (optionalModule.isPresent()) {
 			Module actualModule = optionalModule.get();
 			return actualModule.getLessons();
@@ -61,10 +69,11 @@ public class LessonService {
 	public Lesson updateLesson(
 			@PathVariable ("lessonId") int id, 
 			@RequestBody Lesson newLesson) {
-		Optional<Lesson> optionalLesson = lessonRepository.findById(id);
-		if (optionalLesson.isPresent()) {
-			newLesson.setId(id);
-			return lessonRepository.save(newLesson);
+		Lesson lesson = lessonRepository.findById(id).get();
+		if (lesson != null) {
+			lesson.setTitle(newLesson.getTitle());
+			//newLesson.setId(id);
+			return lessonRepository.save(lesson);
 		}
 		return null;
 	}

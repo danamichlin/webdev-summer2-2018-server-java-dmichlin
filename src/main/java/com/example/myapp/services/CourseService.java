@@ -10,6 +10,7 @@ import com.example.myapp.repositories.CourseRepository;
 import com.example.myapp.models.Course;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class CourseService {
 	
 	@Autowired
@@ -17,6 +18,9 @@ public class CourseService {
 	
 	@PostMapping("/api/course")
 	public Course createCourse(@RequestBody Course course) {
+		Date now = new Date();
+		course.setCreated(now);
+		course.setModified(now);
 		return courseRepository.save(course);
 	}
 	
@@ -42,6 +46,7 @@ public class CourseService {
 			@RequestBody Course newCourse) {
 		Optional<Course> optionalCourse = courseRepository.findById(id);
 		if (optionalCourse.isPresent()) {
+			newCourse.setModified(new Date());
 			newCourse.setId(id);
 			return courseRepository.save(newCourse);
 		}

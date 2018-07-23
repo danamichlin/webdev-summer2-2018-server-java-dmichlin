@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserService {
 	
 	@Autowired

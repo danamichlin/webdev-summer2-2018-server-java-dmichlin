@@ -39,5 +39,14 @@ public class Lesson {
   public Module getModule() {
 	  return this.module;
   }
+  
+  public Lesson() {
+	  
+  }
+  
+  public Lesson(String title, Module module) {
+	  this.title = title;
+	  this.module = module;	  
+  }
 }
 

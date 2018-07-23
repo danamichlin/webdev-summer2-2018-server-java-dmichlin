@@ -49,6 +49,10 @@ public class Module {
 	  return this.lessons;
   }
   
+  public Module() {
+	  
+  }
+  
   public Module(String title, Course course, List<Lesson> lessons) {
 	  this.title = title;
 	  this.course = course;
