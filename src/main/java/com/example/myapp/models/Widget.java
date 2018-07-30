@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Widget {
@@ -11,13 +14,20 @@ public class Widget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	private String text;
 	private String widgetType;
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
 	// List Widget:
 	private String listItems; 
 	private boolean ordered;
 	// Heading Widget: 
 	private int size; 
-	private String text;
+	//Image Widget
+	private String src;
+	// Link Widget
+	private String href;
 	
 	// setters + getters
 	public int getId() {
@@ -38,6 +48,13 @@ public class Widget {
 	}
 	public void setWidgetType(String widgetType) {
 		this.widgetType = widgetType;
+	}
+	
+	public Lesson getLesson() {
+		return lesson;
+	}
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
 	}
 	public String getListItems() {
 		return listItems;
@@ -63,12 +80,21 @@ public class Widget {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Widget() {
-		
+	
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
+	}
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
 	}
 	
-	public Widget(String title) {
-		this.title = title;
+	public Widget() {	
 	}
 	
 }

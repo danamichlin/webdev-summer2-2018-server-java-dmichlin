@@ -1,6 +1,8 @@
 package com.example.myapp.models;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,6 +15,8 @@ public class Lesson {
   @ManyToOne
   @JsonIgnore
   private Module module;
+  @OneToMany(mappedBy="lesson")
+  private List<Widget> widgets;
   
   // setters + getters
   
@@ -40,7 +44,15 @@ public class Lesson {
 	  return this.module;
   }
   
-  public Lesson() {
+  public List<Widget> getWidgets() {
+	return widgets;
+}
+
+public void setWidgets(List<Widget> widgets) {
+	this.widgets = widgets;
+}
+
+public Lesson() {
 	  
   }
   
