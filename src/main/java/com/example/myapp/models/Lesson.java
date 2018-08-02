@@ -48,7 +48,7 @@ public class Lesson {
 	return widgets;
 }
 
-public void setWidgets(List<Widget> widgets) {
+  public void setWidgets(List<Widget> widgets) {
 	this.widgets = widgets;
 }
 

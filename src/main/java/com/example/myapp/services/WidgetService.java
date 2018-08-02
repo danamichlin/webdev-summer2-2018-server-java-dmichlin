@@ -59,14 +59,22 @@ public class WidgetService {
 		}
 	}
 	
-	@PostMapping("/api/widget")
-	public List<Widget> saveWidgets(@RequestBody List<Widget> widgets) {
-		List<Widget> savedWidgets = new ArrayList<Widget>();
-		widgetRepository.deleteAll();
-		for (Widget widget: widgets) {
-			savedWidgets.add(widgetRepository.save(widget));
-		}
-		return savedWidgets;
+	@PutMapping("/api/lesson/{lessonId}/widget")
+	public List<Widget> saveWidgets(@RequestBody List<Widget> widgets, @PathVariable("lessonId") int lessonId) {
+		
+		Lesson lesson = lessonRepository.findById(lessonId).get();
+		lesson.setWidgets(widgets);
+		lessonRepository.save(lesson);
+		
+		
+		return lesson.getWidgets();
+		
+//		List<Widget> savedWidgets = new ArrayList<Widget>();
+//		widgetRepository.deleteAll();
+//		for (Widget widget: widgets) {
+//			savedWidgets.add(widgetRepository.save(widget));
+//		}
+//		return savedWidgets;
 	}
 	
 	@PutMapping("/api/widget/{widgetId}")

@@ -16,6 +16,7 @@ public class Widget {
 	private String title;
 	private String text;
 	private String widgetType;
+	//private int order;
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
@@ -50,6 +51,13 @@ public class Widget {
 		this.widgetType = widgetType;
 	}
 	
+//	public int getOrder() {
+//		return order;
+//	}
+//	
+//	public void setOrder(int order) {
+//		this.order = order;
+//	}
 	public Lesson getLesson() {
 		return lesson;
 	}
@@ -96,5 +104,10 @@ public class Widget {
 	
 	public Widget() {	
 	}
+	
+	  public Widget(String title, Lesson lesson) {
+		  this.title = title;
+		  this.lesson = lesson;	  
+	  }
 	
 }
