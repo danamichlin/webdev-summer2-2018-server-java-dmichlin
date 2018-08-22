@@ -16,6 +16,19 @@
     init();
 
     function login() {
+
+        if ($username.val() === "" && $password.val() === "") {
+            alert("Please make sure username and password fields are filled out");
+        }
+
+        else if ($username.val() === "") {
+            alert("Please enter correct username");
+        }
+
+        else if ($password.val() === "") {
+            alert("Please enter correct password");
+        }
+
         var user = {
             'username': $username.val(),
             "password": $password.val()

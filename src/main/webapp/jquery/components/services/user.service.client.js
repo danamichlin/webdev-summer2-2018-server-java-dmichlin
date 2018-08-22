@@ -65,7 +65,7 @@ function UserServiceClient () {
             }
         }).then(function (response) {
             if (response.status == 403) {
-                alert ("Incorrect Login");
+                alert ("Login Unsuccessful");
                 return null;
             }
             return response.json();
@@ -96,7 +96,7 @@ function UserServiceClient () {
     }
 
     function registrationFailed() {
-        alert('Username cannot be registered')
+        alert('Cannot register with this username: username already exists')
     }
 
     function updateUserProfile(user) {

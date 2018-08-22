@@ -79,13 +79,13 @@ public class UserService {
 	public User login(@RequestBody User user, HttpServletResponse response, HttpSession session) {
 		String username = user.getUsername();
 		String password = user.getPassword();
-		User newUser = userRepository.findUserByCredentials(username, password);
-		if (newUser == null) {
+		User actUser = userRepository.findUserByCredentials(username, password);
+		if (actUser == null) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			return newUser;
+			return actUser;
 		}
-		session.setAttribute("currentUser", newUser);
-		return newUser;
+		session.setAttribute("currentUser", actUser);
+		return actUser;
 	}
 	
 	//profile
