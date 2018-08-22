@@ -9,17 +9,15 @@ function UserServiceClient () {
     this.registerHandler = registerHandler;
     this.updateUserProfile = updateUserProfile;
 
-    var serverUrl = 'https://intense-journey-34677.herokuapp.com';
-
     function deleteUser(id) {
-        var url = serverUrl + "/api/user/" + id;
+        var url = "/api/user/" + id;
         return fetch(url, {
             method: 'delete'
         })
     }
 
     function findAllUsers() {
-        var url = serverUrl + "/api/user";
+        var url = "/api/user";
         return fetch(url)
             .then(function (response) {
                 return response.json();
@@ -27,7 +25,7 @@ function UserServiceClient () {
     }
 
     function createUser(userObjStr) {
-        return fetch('serverUrl + /api/user', {
+        return fetch('/api/user', {
             method: 'Post',
             body: userObjStr,
             headers: {
@@ -37,7 +35,7 @@ function UserServiceClient () {
     }
 
     function findUserById(id) {
-        var url = serverUrl + "/api/user/" + id;
+        var url = "/api/user/" + id;
 
         return fetch(url)
             .then(function (response) {
@@ -46,7 +44,7 @@ function UserServiceClient () {
     }
 
     function updateUser(id, userObjStr) {
-        var url = serverUrl + "/api/user/" + id;
+        var url = "/api/user/" + id;
 
         return fetch(url, {
             method: 'Put',
@@ -58,7 +56,7 @@ function UserServiceClient () {
     }
 
     function login (userObjectStr) {
-        return fetch(serverUrl + '/login', {
+        return fetch('/login', {
             method: 'Post',
             body: userObjectStr,
             credentials: 'include',
@@ -75,7 +73,7 @@ function UserServiceClient () {
     }
 
     function registerHandler (userObjStr) {
-        fetch(serverUrl + '/register', {
+        fetch('/register', {
             method: 'post',
             body: userObjStr,
             headers: {
@@ -102,7 +100,7 @@ function UserServiceClient () {
     }
 
     function updateUserProfile(user) {
-        fetch(serverUrl + "/api/profile", {
+        fetch("/api/profile", {
             method: 'put',
             body: JSON.stringify(user),
             'credentials': 'include',
